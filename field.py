@@ -6,18 +6,15 @@ class Field:
 
     def is_wall(self, y, x) -> bool:
         return self.grid[y][x] == "🟧"
-
-    def eat_resource(self, y, x) -> bool:
-        if self.grid[y][x] == "🔸":
-            self.grid[y][x] = "　"
-            return True
-        return False
     
     def _eat(self, y: int, x: int, symbol: str) -> bool:
         if self.grid[y][x] == symbol:
             self.grid[y][x] = "　"
             return True
         return False
+
+    def eat_resource(self, y, x) -> bool:
+        return self._eat(y, x, "🔸")
 
     def eat_life(self, y, x):
         return self._eat(y, x, "➕")
